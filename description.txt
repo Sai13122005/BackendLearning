@@ -1,0 +1,44 @@
+process: this object provides information about , and control over , the current Node.js process.
+process.argv : return the array containing the command-line argument passed when the Node.js 
+process was launched.
+__________________________________________________________________________________
+module.exports: it is object that exports the data to required file
+require("<filename to be exported>") is used in importing file to get that data 
+__________________________________________________________________________________
+NPM(Node Package manager):
+npm is the standard package manager for node.js
+    it helps to use others code that was built
+    it is library of packages
+        eg for packages: Express.js, react.js
+    it is also a command line tool
+    npm is preinstalled with node
+to install packages: npm install <package_name>  
+we can search packages in website:https://www.npmjs.com/ 
+ eg package : figlet which helps to print in command line: https://www.npmjs.com/package/figlet
+by installing a package we get:
+            node-modules: the node_module folder contains every installed dependency for your project
+            package-lock.json : it records the exact version of every installed dependency, including 
+                                it sun dependencies and their versions
+            package.json: the package.json file contains descriptive and functional metadata about a project, such as a name, version, and dependencies
+                            it helps to download dependencies if there are delete by the command: npm install
+            we can also create our own package.json file for our project 
+Global vs Local packages:
+to download package Globally command: npm install -g <package_name>
+and to use it command: npm link <package_name>
+to make a package.json file our project :
+    we use command: npm init;
+__________________________________________________________________________________
+import vs require:-
+
+import{sum} from "./math.js";
+
+we can't selectively load only the pieces we need with require but with import,
+we can selectively load only the pieces we need, which can save memory.
+Loading is synchronus for "require" but can be asynchronus for "import"
+note: in a project we can use either import or require don't use both for a good code
+to do import in a directory, the directory should contain package.json with type= "module" in it.
+
+we can also import packages
+    eg here we downloaded random-words package which is found in node_modules
+    to use it should import it using "import"
+  syntax:  import {generate} from random-words

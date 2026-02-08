@@ -1,0 +1,33 @@
+templating:-
+EJS(Embedded JavaScript templates)
+EJS: is a simple templating language that lets you generate HTML markup 
+    with plain JavaScript  
+steps to use:
+    first initialize npm with default values :command : npm init -y
+    and also install express
+    install EJS
+    to use we have to write this
+    app.set("view engine", "ejs");
+    app.get("/", (req, res)=>{
+        res.render("This is home page");
+        //here render is using to send a file instead of a string/array/html tags
+    });
+    //here to we have to render .ejs file which are generally stored in views folder
+    we can start server and send a response from server from parent any directory by giving full path
+    command eg: nodemon /path/index.js
+    but it fails for render 
+    express will not found views directory as it searche views directory in directory where we run the server
+    
+
+interpolation Syntax:-
+    interpolation refers to embedding expressions into markedup text
+    here we use ejs tags:
+        <% 'Scriptlet' tag, for control-flow, no output
+        <%_ ‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it
+        <%= Outputs the value into the template (HTML escaped)*************imp
+        <%- Outputs the unescaped value into the template
+        <%# Comment tag, no execution, no output
+        <%% Outputs a literal '<%'
+        %> Plain ending tag
+        -%> Trim-mode ('newline slurp') tag, trims following newline
+        _%> ‘Whitespace Slurping’ ending tag, removes all whitespace after it

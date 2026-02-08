@@ -1,0 +1,2 @@
+this folder is to implement creation of our own package.json file 
+using npm init command
