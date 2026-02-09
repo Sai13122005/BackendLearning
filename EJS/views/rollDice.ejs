@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roll Dice</title>
+    <!-- <link rel="stylesheet" href="/public/style.css"> -->
+    <!-- here we need not to write /public because by default express access public folder-->
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <h1>Roll Result: 
         <%=num%>
     </h1>
+    <!-- to write control statements in ejs file we use <% %>-->
+     <!-- eg -->
+      <% if(num == 6){ %>
+      <h2>Nice !</h2>
+      <% } %>
+      
 </body>
 </html>

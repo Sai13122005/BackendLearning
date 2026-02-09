@@ -4,6 +4,13 @@ let port = 2202;
 const path = require("path");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
+//to serve a static folder(which includes files like .css, .js which are fixed)
+//app.use(express.static("public")); //here public is a folder , note: name should be "folder"
+//if want to change folder name we have to use a function
+//if we want to acces public folder in ejs files when the server started from another directory
+//then
+app.use(express.static(path.join(__dirname,"/public")));
+
 app.get("/", (req, res)=>{
     res.render("home");//express by default it search the file in the "views" folder
     //also we can write without extension "home" or "home.ejs"
@@ -48,3 +55,5 @@ app.get("/rolldice", (req, res)=>{
     let rollFromDatabase =  Math.floor(Math.random()*6)+1;
     res.render("rollDice", {num: rollFromDatabase});
 });
+
+
