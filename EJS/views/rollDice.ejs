@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roll Dice</title>
-    <!-- <link rel="stylesheet" href="/public/style.css"> -->
-    <!-- here we need not to write /public because by default express access public folder-->
-    <link rel="stylesheet" href="/style.css">
-</head>
+<%-include("includes/head.ejs")%>
 <body>
     <h1>Roll Result: 
         <%=num%>
@@ -17,6 +8,7 @@
       <% if(num == 6){ %>
       <h2>Nice !</h2>
       <% } %>
-      
+      <%- include("includes/footer.ejs") %>
 </body>
+    
 </html>

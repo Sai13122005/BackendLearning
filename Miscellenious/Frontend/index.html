@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get & Post Requests</title>
+</head>
+<body>
+    <h3>Get Request</h3>
+    <form method="get" action="http://localhost:8080/register">
+        <input placeholder="Username" type="text" name="user">
+        <input type="password" placeholder="password" name="pass">
+        <button>Submit</button>
+    </form>
+    <!-- in get request the data we enter in form is visible in url which is not safe -->
+     <!-- there is a limit for url length so we can't send much information through query strings -->
+      <!-- we can send only string type  data-->
+    <h3>Post Request</h3>
+     <form method="post" action="http://localhost:8080/register">
+        <input placeholder="Username" type="text" name="user">
+        <input type="password" placeholder="password" name="pass">
+        <button>Submit</button>
+    </form>
+    <!-- in post it is reverse of get the data is sent through a request body -->
+     <!-- post is also used to create/update/write new data in database/server -->
+      <!-- we can send any type data through post request -->
+</body>
+</html>
