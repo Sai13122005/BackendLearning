@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+</head>
+<body>
+    <h1>Quora...</h1>
+    <h2>Edit your post</h2>
+    <p>Post Id: <%= post.id %></p>
+    <p>Post Username : @<%= post.username %></p>
+    <!-- we can send only post and get req through html form we couldn't send patch, delete reqs -->
+     <!-- for patch req we have to use a npm package which is (method_override) to override a given method to required method -->
+    <form method="post" action="/posts/<%=post.id%>?_method=PATCH">  
+        <textarea rows="10" cols="40" name="content"><%= post.content %></textarea>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

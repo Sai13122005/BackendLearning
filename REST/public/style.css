@@ -1,0 +1,17 @@
+h1{
+    color: rgb(194, 7, 7);
+}
+.posts{
+    background-color: rgb(231, 221, 225);
+}
+.user{
+    font-style: italic;
+}
+.addPost{
+    border: none;
+    background-color: rgb(5, 133, 5);
+    color: white;
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+}
