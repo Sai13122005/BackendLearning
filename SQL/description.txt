@@ -1,0 +1,10 @@
+while developing we should data in database to test it.
+but adding data takes time, so to overcome this we use a package called faker which generate fake data
+mysql2 package to coonect sql to node
+ command to install : npm i mysql2
+
+we can use mysql in 4 ways:
+    1. workbench
+    2. connect with node
+    3. CLI (command line)
+    4. sql files
