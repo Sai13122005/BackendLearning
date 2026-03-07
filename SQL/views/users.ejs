@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <style>
+        table{
+            width: 100%;
+        }
+        table, tr,th,  td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <% for(let user of result) {%>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.username %>
+                    <form action="/user/<%=user.id%>/edit" method="GET">
+                        <button>Edit Username</button>
+                    </form> 
+                </td>
+                <td><%= user.email %>
+                </td>
+                
+            </tr>
+        <% } %>
+    </table>
+    
+
+</body>
+</html>
