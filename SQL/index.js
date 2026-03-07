@@ -119,8 +119,10 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 const method_override = require("method-override");
 const console = require('console');
+const { randomUUID } = require('crypto');
 app.use(method_override("_method"));
 app.use(express.urlencoded({extended: true}));
+const { v4: uuidv4 } = require('uuid');
 app.listen(port, ()=>{
   console.log("listening");
 });
@@ -202,4 +204,89 @@ app.patch("/user/:id", (req, res)=>{
   catch(err){
     res.send("Error in Database");
   }
+});
+
+// ________________add new user_________________________
+
+
+app.get("/user/add", (req, res)=>
+{
+    res.render("new.ejs");
+});
+
+app.post("/user/add",(req, res)=>{
+    let {username, password ,email} = req.body;
+    let id = uuidv4();
+    let q =  "insert into user values(?,?,?,?)";
+    try{
+      connection.query(q,[id, username,email,password], (err, result)=>{
+          res.render("Greet.ejs");
+      });
+    }
+    catch(err){
+        res.send("Error in DB");
+    }
+});
+
+app.get("/user/delete", (req, res)=>{
+    res.render("Delete.ejs");
+});
+
+// handle DELETE requests from the form using method-override
+app.delete("/user/delete", (req, res)=>{
+    let {password, username} = req.body;
+    let q =  `SELECT password FROM user WHERE username = ?`;
+    try{
+      connection.query(q, [username], (err, result)=>{
+        if(err) throw err;
+        if(!result.length){
+          return res.send("user not found");
+        }
+        if(result[0].password != password)
+        {
+            res.send("wrong password!");
+        }
+        else{
+          let q2 = `DELETE FROM user WHERE username = ? AND password = ?`;
+          connection.query(q2, [username, password], (err, result)=>{
+            if(err)throw err;
+            res.render("Bye.ejs");
+          });
+        }
+      });
+    }
+    catch(err)
+    {
+      res.send("error in DB");
+    }
+});
+
+// handle deletion via POST (fallback if method-override isn't used)
+app.post("/user/delete", (req, res)=>{
+    let {password, username} = req.body;
+    // parameterized queries to avoid SQL injection and quoting issues
+    let q =  `SELECT password FROM user WHERE username = ?`;
+    try{
+      connection.query(q, [username], (err, result)=>{
+        if(err) throw err;
+        if(!result.length){
+          return res.send("user not found");
+        }
+        if(result[0].password != password)
+        {
+            res.send("wrong password!");
+        }
+        else{
+          let q2 = `DELETE FROM user WHERE username = ? AND password = ?`;
+          connection.query(q2, [username, password], (err, result)=>{
+            if(err)throw err;
+            res.render("Bye.ejs");
+          });
+        }
+      });
+    }
+    catch(err)
+    {
+      res.send("error in DB");
+    }
 });

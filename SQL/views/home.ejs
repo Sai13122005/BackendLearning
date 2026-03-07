@@ -7,6 +7,15 @@
 </head>
 <body>
         <h1>The total number of users are: <%= count %> </h1>
-        <button>join us today!</button>
+        <form action="/user/add" method="get">
+            <button>join us today!</button>
+        </form>
+
+        <form action="/user/delete" method="get">
+            <br><button>Exit !</button>
+        </form>
+         <form action="/users" method="get">
+            <br><button>Show Users</button>
+        </form>
 </body>
 </html>
