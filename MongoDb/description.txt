@@ -1,0 +1,136 @@
+to start mongoDb service in windows after installation (command): net start mongoDb
+to start mongoDb shell : mongosh
+to clear shell : cls
+to get commands : help
+
+log                                        'log.info(<msg>)': Write a custom info/warn/error/fatal/debug message to the log file
+                                            'log.getPath()': Gets a path to the current log file
+
+use                                        Set current database
+show                                       'show databases'/'show dbs': Print a list of all available databases
+                                            'show collections'/'show tables': Print a list of all collections for current database
+                                            'show profile': Prints system.profile information
+                                            'show users': Print a list of all users for current database
+                                            'show roles': Print a list of all roles for current database
+                                            'show log <name>': Display log for current connection, if name is not set uses 'global'
+                                            'show logs': Print all logger names.
+exit                                       Quit the MongoDB shell with exit/exit()/.exit
+quit                                       Quit the MongoDB shell with quit/quit()
+Mongo                                      Create a new connection and return the Mongo object. Usage: new Mongo(URI, options [optional])
+connect                                    Create a new connection and return the Database object. Usage: connect(URI, username [optional], password [optional])
+it                                         result of the last line evaluated; use to further iterate
+version                                    Shell version
+load                                       Loads and runs a JavaScript file into the current shell environment
+enableTelemetry                            Enables collection of anonymous usage data to improve the mongosh CLI
+disableTelemetry                           Disables collection of anonymous usage data to improve the mongosh CLI
+passwordPrompt                             Prompts the user for a password
+sleep                                      Sleep for the specified number of milliseconds
+print                                      Prints the contents of an object to the output
+printjson                                  Alias for print()
+convertShardKeyToHashed                    Returns the hashed value for the input using the same hashing function as a hashed index.
+cls                                        Clears the screen like console.clear()
+isInteractive                              Returns whether the shell will enter or has entered interactive mode
+
+
+
+it recognize JavaScript command like it gives 3 for 1+2 like node shell
+eg: it converts to uppercase for ("saikrishna".toUpperCase())
+
+by default mongoDb start with temp db called test
+use <database name> to Create & use a new database
+in MongoDB until we insert any data in db it is treated as temporary db so that is why in show dbs the newly created db will not be shown
+db: to get curent db name 
+
+in mongoDb data is inserted in the formatt of BSON(Binary JSON)
+in JSON data is text based which is difficult while parsing and JSON is space inefficient as it is text based
+BSON solves the above problems of JSON
+we give JSON to MongoDB but it stores as BSON
+BSON has more data types than JSON
+
+
+JSON vs BSON
+                                        JSON	                                              BSON       
+Encoding                             UTF-8 string                                            Binary
+Data Support            String, boolean, number, array, object, null            String, boolean, number (integer, float, long, decimal128...), array, null, date, BinData
+Readability                        Human and machine                                        Machine only
+ 
+Documents: Mongo stores data in the form of documents(BSON doc). (like rows in sql)
+collections: Mongo stores documents in collections.(like tables in sql)
+
+
+https://www.mongodb.com/docs/manual/crud/   (to know command to crud operations)
+
+commands :-
+ * insert a single doc : db.<collection_name>.insertOne()  (if there is no collection before, it creates new collection)
+ //give doc as a js object
+ eg :
+ db.student.insertOne({name: "saikrishn" , marks: 98});
+ to see docs in a collection : db.<collection_name>.find()
+ eg:
+         db.student.find()
+         output: 
+        [
+        {
+            _id: ObjectId('69b2fba360a18a1efe7c2907'),
+            name: 'Saikrishn',
+            marks: 98
+        }
+        ]
+
+Note : here in mongoDb's collection the docs can be with different schemas inlike sql has fixed schemas for all tuples of a table
+
+  * to insert many docs at a time : db.<collection_name>,insertMany(<Array of Doc>)
+  eg: db.student.insertMany([{name: "ram", marks: 98},{name: "ravi", marks: 88},{name: "charan", marks: 78}])
+
+        output:
+        {
+            acknowledged: true,
+            insertedIds: {
+                '0': ObjectId('69b2ff5360a18a1efe7c290d'),
+                '1': ObjectId('69b2ff5360a18a1efe7c290e'),
+                '2': ObjectId('69b2ff5360a18a1efe7c290f')
+            }
+        }
+        db.student.find() (returns overall docs (reading in CRUD))
+        [
+        {
+            _id: ObjectId('69b2fba360a18a1efe7c2907'),
+            name: 'Saikrishn',
+            marks: 98
+        },
+        { _id: ObjectId('69b2fd0d60a18a1efe7c2908'), name: 'Sai', marks: 81 },
+        {
+            _id: ObjectId('69b2fd7d60a18a1efe7c2909'),
+            name: 'Sai',
+            age: 19,
+            college: 'UOH',
+            marks: 81
+        },
+        { _id: ObjectId('69b2ff5360a18a1efe7c290d'), name: 'ram', marks: 98 },
+        { _id: ObjectId('69b2ff5360a18a1efe7c290e'), name: 'ravi', marks: 88 },
+        {
+            _id: ObjectId('69b2ff5360a18a1efe7c290f'),
+            name: 'charan',
+            marks: 78
+        }
+        ]
+
+* db.<collection_name>.find({key: value})  (to get all docs those contain the given key value pair)
+and it returns cursor means reference to original   
+
+    eg: 
+    db.student.find({name: "Sai"})
+    [
+    { _id: ObjectId('69b2fd0d60a18a1efe7c2908'), name: 'Sai', marks: 81 },
+    {
+        _id: ObjectId('69b2fd7d60a18a1efe7c2909'),
+        name: 'Sai',
+        age: 19,
+        college: 'UOH',
+        marks: 81
+    }
+    ]
+to get onn doc :  db.<collection_name>.findOne({key: value}(wse can give multiple key value pairs)) it returns actual doc
+    eg:
+    db.student.findOne({name: "Sai"})
+    { _id: ObjectId('69b2fd0d60a18a1efe7c2908'), name: 'Sai', marks: 81 }
