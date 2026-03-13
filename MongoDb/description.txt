@@ -134,3 +134,78 @@ to get onn doc :  db.<collection_name>.findOne({key: value}(wse can give multipl
     eg:
     db.student.findOne({name: "Sai"})
     { _id: ObjectId('69b2fd0d60a18a1efe7c2908'), name: 'Sai', marks: 81 }
+
+* Query operators:- 
+    comparison operators: 
+        $eq :   Matches values equal to a specified value.
+        $gt :   Matches values greater than a specified value.
+        $gte:   Matches values greater than or equal to a specified value.
+        $in :   Matches any values specified in an array.
+        $lt :   Matches values less than a specified value.
+        $lte:   Matches values less than or equal to a specified value.
+        $ne :   Matches all values not equal to a specified value.
+        $nin:   Matches if the value is not equal to any of a given list of values.
+    Logical operators:
+        $and:    Joins query clauses with a logical AND and returns documents that match the conditions of all clauses.
+        $nor    Joins query clauses with a logical NOR and returns all documents that fail to match all clauses.
+        $not    Inverts the effect of a query predicate and returns documents that do not match the query predicate.
+        $or     Joins query clauses with a logical OR and returns all documents that match at least one clause.
+    https://www.mongodb.com/docs/manual/reference/mql/query-predicates/         (for more queries)
+
+    eg: db.student.find({marks : {$gt: 75}}) (marks > 75)
+    eg: db.student.find({$or: [{marks: {$gt: 90}}, {name: "Sai"}]}) (multiple queries)
+
+
+* Update Method:
+            update operators: 
+                    $addFields
+                    $set
+                    $project
+                    $unset
+                    $replaceRoot
+                    $replaceWith
+
+    db.<collection_name>.updateOne(<filter> , <update>, <options>)
+
+    eg: db.student.updateOne({name: "ram"},{$set: {marks : 100}})
+
+    db.<collection_name>.updateMany(filter, update, options) : Updates all documents that match the specified filter for a collection.
+
+    eg: db.student.updateMany({marks: {$gte: 80}},{$set: {city: "Hyd"}})
+
+    db.collection.replaceOne(filter, replacement, options)    : Replaces a single document within the collection based on the filter and id remains same as previous
+
+    eg : db.student.replaceOne({name: "Saikrishn"}, {name: "Saikrishna", marks: 50, age: 19})
+
+
+______________________________________________________________________________________________________________
+
+* nesting(object in an object)
+    eg: {
+            _id: ObjectId('69b45fc0848d1f37b17c2907'),
+            name: 'Shiva',
+            performance: { marks: 98, grade: 'A' }
+         }
+        to access marks in above : db.student.find({"performance.marks": 98})
+                                    output: 
+                                            [
+                                            {
+                                                _id: ObjectId('69b45fc0848d1f37b17c2907'),
+                                                name: 'Shiva',
+                                                performance: { marks: 98, grade: 'A' }
+                                            }
+                                            ]
+
+______________________________________________________________________________________________________________
+
+*Delete:
+        db.collection.deleteOne(<filter> , <options>) : Removes a single document from a collection.
+        db.collection.deleteMany(<filter> , <options>) : Removes all documents that match the filter from a collection.
+        eg : db.student.deleteMany({})  to delete all documents
+        db.dropDatabase(<writeConcern>)   : Removes the current database, deleting the associated data files.
+
+______________________________________________________________________________________________________________
+
+mongoose: a library that creates a connection between MongoDB & Node.js JavaScript runtime environment
+        it is an ODM (Object Data Modeling) library
+        
