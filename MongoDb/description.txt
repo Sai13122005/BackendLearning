@@ -208,4 +208,12 @@ ________________________________________________________________________________
 
 mongoose: a library that creates a connection between MongoDB & Node.js JavaScript runtime environment
         it is an ODM (Object Data Modeling) library
-        
+
+schemas: defines the shape of the doc within that collection
+
+model : model in mongoose is a class with which we construct documents
+
+
+Note: mongoose uses operation buffering
+        mongoose lets you start using your models immediately, without
+        waiting for mongoose to establish a connection to mongodb
