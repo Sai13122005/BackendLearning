@@ -1,0 +1,50 @@
+to setup react 
+we can use :
+    Create-React-App(older version)
+    or  vite
+      npm command: npm create vite@latest
+      npm run dev command to start the server
+ component: is a reusable and independent piece of code
+ creating a component is very similar to function in js
+        function Title(){
+            return <h1>Iam the Title</h1>;
+        }
+        after to render the component we should write like a html tag
+        eg: <Title></Title> or <Title/>
+
+        if we want add multiple components in App
+         function Title(){
+            return (<>
+                <h1>Iam the Title</h1>
+            </>);
+        } 
+    generally we create .jsx files for every component
+When writing a JSX (JavaScript XML) file in React, you must follow specific syntax and structural rules
+        1. Return a Single Root Element
+        3. Explicitly Close All Tags
+        4. Use camelCase for Most Attributes
+React Fragment
+    React Fragments allow you to group multiple elements together without adding extra, unnecessary nodes to the DOM
+    using <></>
+
+note: in jsx if we any code within {} it is treated as JS code
+    eg:
+        function Product(){
+            return (<>
+                <p>2*2 = {2*2}</p>
+            </>);
+        } 
+for style we can use .css file or we can use .ClassName{} in same .jsx  
+
+props : In React, props (short for "properties") are
+read-only configuration objects used to pass data from a parent component to a child component.
+They act like function arguments in standard JavaScript and HTML attributes combined, 
+serving as the primary communication channel between components.
+
+props   are the information that you pass to a JSX tag.
+
+map method in react
+
+conditionals in react: Adding elements on the basis of some condition
+
+dynamic component styling : styling a component based on some condition
