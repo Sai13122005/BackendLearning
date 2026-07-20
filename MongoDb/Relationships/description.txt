@@ -7,3 +7,9 @@ one-to- many:
 
 
 for detailed notes : https://www.mongodb.com/company/blog/mongodb/6-rules-of-thumb-for-mongodb-schema-design
+
+
+handling deletion : deletion of related documents using a mongoose middleware
+                two types of middleware :
+                            Pre- run before the query is executed
+                            post-run after the query is executed

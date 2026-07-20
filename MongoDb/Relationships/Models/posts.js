@@ -22,7 +22,6 @@ const PostSchema = new mongoose.Schema({
         ref: "InstaUser",
     }
 });
-
 const InstaUser = mongoose.model("InstaUser", UserSchema);
 const Post = mongoose.model("Post", PostSchema);
 

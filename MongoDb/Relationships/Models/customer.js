@@ -21,8 +21,25 @@ const customerSchema = new mongoose.Schema({
         }
     ]
 });
+
+//middleware to handling deletion
+// customerSchema.pre("findOneAndDelete", ()=>{
+//     console.log("Pre Middleware");
+// });
+
+customerSchema.post("findOneAndDelete", async (customer)=>{
+    if(customer.orders.length > 0)
+    {
+        let res = await Order.deleteMany({_id:{$in: customer.orders}});
+        console.log(res);
+    }
+});
 const Order = mongoose.model("Order", orderSchema);
 const Customer = mongoose.model("Customer", customerSchema);
+
+
+
+
 const addCustomers = async () => {
     let cust1 = new Customer(
         {
@@ -44,13 +61,32 @@ const findCustomer = async()=>{
 }
 //addCustomers();
 
-findCustomer();
-// const addOrders = async()=>{
-//    let res =  await Order.insertMany([
-//         {item: "Samosa", price: 20},
-//         {item: "Chai", price: 10},
-//         {item: "popcorn", price: 30}]
-//     );
-//     console.log(res);
-// };
-// addOrders();
+//findCustomer();
+const addOrders = async()=>{
+   let res =  await Order.insertMany([
+        {item: "Samosa", price: 20},
+        {item: "Chai", price: 10},
+        {item: "popcorn", price: 30}]
+    );
+    console.log(res);
+};
+//addOrders();
+
+const addData = async ()=>{
+    const newOrder = new Order({item: "Ice Cream", price: 90});
+    const newCus = new Customer({
+        name: "Ram"
+    });
+    newCus.orders.push(newOrder);
+    await newCus.save();
+    await newOrder.save();
+    console.log("New Customer is added")
+}
+
+//addData();
+
+const deleteData = async ()=>{
+    const data = await Customer.findByIdAndDelete('6a5e134a338cd52f5c63296d');
+    console.log(data);
+}
+deleteData();
