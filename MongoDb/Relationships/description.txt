@@ -2,4 +2,8 @@ Relationships in MongoDB:
 
 one-to- many:
     1) one-to-few: store the child document inside parent (it is suitable to store 10s to 100s documents as children)
-    
+    2) store the child document reference inside parent(it is suitable to store 1000s of documents)
+    3) one to Squillion : store a reference of parent document in child document
+
+
+for detailed notes : https://www.mongodb.com/company/blog/mongodb/6-rules-of-thumb-for-mongodb-schema-design
