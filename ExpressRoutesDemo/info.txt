@@ -1,0 +1,43 @@
+In Express.js, an Express Router is a built-in class used to create modular, mountable route handlers.
+It is often described as a "mini-application" because it can perform middleware and routing functions 
+just like a main Express application instance, but it cannot stand alone
+
+
+Instead of cluttering your main server file (like app.js or index.js) with dozens of API endpoints, 
+you use Express Router to split your routes into separate, organized files
+
+
+Cookies: 
+
+HTTP Cookies
+
+An HTTP cookie is a small piece of data that a web server sends to a user's browser. 
+The browser stores the cookie and sends it back to the server with subsequent requests.
+Cookies help websites remember information about users across multiple HTTP requests.
+
+Why Are Cookies Needed?
+
+HTTP is a stateless protocol. This means that each request is independent, and the server does 
+not automatically remember previous requests from the same client.
+
+For example, consider an online shopping website:
+
+You log in to the website.
+
+You add a product to your cart.
+
+You move to another page.
+
+The website should still know who you are and what is in your cart.
+
+
+Express Session : an attempt to make our session stateful
+here for every seesion , on server side it store session information in a temporary storage with session id
+and that id is sent to frontend and stored in browser as a cookie for further use.
+when again client opens the web, browser sent that saved cookie(session id) to get old session information.
+ in a new session, to access past session information browser sent stored session id (cookie) to the server.
+
+here cookies are storing only session id rather than session information as:
+    1) it is not safe to store in cookies
+    2) limited storage in cookies than temporary storage on server side
+
